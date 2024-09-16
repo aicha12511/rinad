@@ -8,8 +8,8 @@ import os
 load_dotenv()
 
 # Set your OpenAI API key here
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
+#openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key='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'
 # Define the path to the PDF file here
 PDF_FILE_PATH = 'Policies001 (1).pdf'  # Replace with the actual file path
 
