@@ -11,7 +11,7 @@ load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Define the path to the PDF file here
-PDF_FILE_PATH = '/Users/macos/Downloads/chatbot-main 10/Policies001 (1).pdf'  # Replace with the actual file path
+PDF_FILE_PATH = 'Policies001 (1).pdf'  # Replace with the actual file path
 
 def extract_text_from_pdf(pdf_path):
     pages_text = []
