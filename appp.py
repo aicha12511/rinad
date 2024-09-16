@@ -64,12 +64,21 @@ def main():
         if os.path.exists(pdf_path):
             pages_text = extract_text_from_pdf(pdf_path)
             if pages_text:
-                num_pages = st.slider("Select number of pages to process", min_value=1, max_value=len(pages_text), value=len(pages_text), step=1)
+                # Allow users to select the range of pages
+                total_pages = len(pages_text)
+                start_page = st.number_input("Start Page", min_value=1, max_value=total_pages, value=1)
+                end_page = st.number_input("End Page", min_value=start_page, max_value=total_pages, value=total_pages)
+
+                # Ensure valid range
+                if start_page > end_page:
+                    st.error("Start page must be less than or equal to end page.")
+                    return
+
                 num_questions = st.slider("Select number of questions per page", min_value=1, max_value=100, value=20, step=1)
 
                 if st.button("Generate Questions"):
                     all_questions = []
-                    for page_num in range(num_pages):
+                    for page_num in range(start_page - 1, end_page):  # Adjusting for zero-based index
                         text = pages_text[page_num]
                         st.write(f"Generating questions for Page {page_num + 1}...")
                         questions = generate_questions(api_key, text, num_questions)
@@ -109,3 +118,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
